@@ -1,0 +1,31 @@
+{
+  "name": "taskly-api",
+  "version": "1.0.0",
+  "description": "Taskly — API Express (authentification + todos)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node dev-server.js",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "jest": {
+    "transform": {},
+    "testEnvironment": "node"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.1.4"
+  }
+}

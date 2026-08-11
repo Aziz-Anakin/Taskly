@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  /* Surfaces : warm paper palette */
+  --color-paper: #f4f1e9;
+  --color-surface: #fbf9f3;
+  --color-line: #e3e0d5;
+  --color-line-soft: #ece9df;
+
+  /* Ink */
+  --color-ink: #1a1915;
+  --color-ink-soft: #44423a;
+  --color-muted: #76746a;
+
+  /* Evergreen accent */
+  --color-evergreen: #2e5a48;
+  --color-evergreen-dark: #224638;
+  --color-evergreen-deep: #1c2a24;
+  --color-evergreen-tint: #e6eee8;
+
+  /* Status hues (muted) */
+  --color-slate-tint: #e7edf2;
+  --color-slate-ink: #3e607c;
+  --color-ochre-tint: #f3ecdb;
+  --color-ochre-ink: #876731;
+
+  --radius-card: 14px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(26, 25, 21, 0.22) transparent;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv01";
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background-color: var(--color-evergreen);
+    color: var(--color-paper);
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+    letter-spacing: inherit;
+  }
+
+  /* Native date picker indicator tuned to the palette */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.45;
+    cursor: pointer;
+  }
+
+  /* Scrollbar discrète, accordée au thème */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(26, 25, 21, 0.18);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(26, 25, 21, 0.32);
+    background-clip: padding-box;
+  }
+
+  /* Neutralise le fond jaune d'autofill de Chrome */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--color-ink);
+    -webkit-box-shadow: 0 0 0 1000px var(--color-surface) inset;
+    caret-color: var(--color-ink);
+    transition: background-color 9999s ease-in-out 0s;
+  }
+
+  /* Cache la croix de reset native sur les champs */
+  input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  /* Subtle paper grain for atmosphere */
+  .bg-grain {
+    background-image: radial-gradient(
+      rgba(26, 25, 21, 0.025) 1px,
+      transparent 1px
+    );
+    background-size: 4px 4px;
+  }
+  .field-focus:focus {
+    outline: none;
+    border-color: var(--color-evergreen);
+    box-shadow: 0 0 0 3px rgba(46, 90, 72, 0.12);
+  }
+  /* Select : flèche personnalisée, fin du chevron natif */
+  .field-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2376746a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1.05rem;
+    padding-right: 2.25rem;
+  }
+}

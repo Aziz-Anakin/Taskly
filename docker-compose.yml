@@ -1,0 +1,19 @@
+services:
+  api:
+    build: ./api
+    container_name: taskly-api
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+
+  web:
+    build: ./web
+    container_name: taskly-web
+    restart: always
+    ports:
+      - "8081:80"
+    depends_on:
+      - api
+
